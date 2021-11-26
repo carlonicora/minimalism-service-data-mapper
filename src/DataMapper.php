@@ -8,7 +8,7 @@ use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataInterface;
 use CarloNicora\Minimalism\Interfaces\ServiceInterface;
 use CarloNicora\Minimalism\Services\DataMapper\Interfaces\BuilderInterface;
 
-class Data extends AbstractService
+class DataMapper extends AbstractService
 {
     /** @var ServiceInterface|null  */
     private ?ServiceInterface $defaultService=null;

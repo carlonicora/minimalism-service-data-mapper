@@ -8,7 +8,7 @@ use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataInterface;
 use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataLoaderInterface;
 use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataObjectInterface;
 use CarloNicora\Minimalism\Interfaces\ServiceInterface;
-use CarloNicora\Minimalism\Services\DataMapper\Data;
+use CarloNicora\Minimalism\Services\DataMapper\DataMapper;
 use CarloNicora\Minimalism\Services\DataMapper\Exceptions\RecordNotFoundException;
 use CarloNicora\Minimalism\Services\DataMapper\Interfaces\BuilderInterface;
 use Exception;
@@ -39,8 +39,8 @@ abstract class AbstractLoader implements DataLoaderInterface
         protected MinimalismFactories $factories,
     )
     {
-        /** @var Data $data */
-        $data = $this->factories->getServiceFactory()->create(Data::class);
+        /** @var DataMapper $data */
+        $data = $this->factories->getServiceFactory()->create(DataMapper::class);
 
         $this->data = $data->getData();
         $this->builder = $data->getBuilder();
