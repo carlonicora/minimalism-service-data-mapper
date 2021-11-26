@@ -8,16 +8,6 @@ use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataFunctionInterface;
 interface BuilderInterface
 {
     /**
-     * JsonApiBuilderFactory constructor.
-     * @param MinimalismFactories $factories
-     * @param CacheInterface|null $cache
-     */
-    public function __construct(
-        MinimalismFactories $factories,
-        ?CacheInterface $cache,
-    );
-
-    /**
      * @param string $resourceTransformerClass
      * @param DataFunctionInterface $function
      * @param int $relationshipLevel
