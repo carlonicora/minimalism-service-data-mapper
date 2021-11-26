@@ -3,8 +3,6 @@ namespace CarloNicora\Minimalism\Services\DataMapper;
 
 use CarloNicora\Minimalism\Abstracts\AbstractService;
 use CarloNicora\Minimalism\Interfaces\Cache\Interfaces\CacheBuilderFactoryInterface;
-use CarloNicora\Minimalism\Interfaces\Cache\Interfaces\CacheInterface;
-use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataInterface;
 use CarloNicora\Minimalism\Interfaces\ServiceInterface;
 use CarloNicora\Minimalism\Services\DataMapper\Interfaces\BuilderInterface;
 
@@ -18,19 +16,6 @@ class DataMapper extends AbstractService
 
     /** @var BuilderInterface|null  */
     private ?BuilderInterface $builder=null;
-
-    /**
-     * Pools constructor.
-     * @param DataInterface $data
-     * @param CacheInterface|null $cache
-     */
-    public function __construct(
-        protected DataInterface $data,
-        protected ?CacheInterface $cache=null,
-    )
-    {
-        parent::__construct();
-    }
 
     /**
      * @param BuilderInterface $builder
@@ -72,30 +57,12 @@ class DataMapper extends AbstractService
     }
 
     /**
-     * @return CacheInterface|null
-     */
-    public function getCache(
-    ): ?CacheInterface
-    {
-        return $this->cache;
-    }
-
-    /**
      * @return CacheBuilderFactoryInterface|null
      */
     public function getCacheFactory(
     ): ?CacheBuilderFactoryInterface
     {
         return $this->cacheFactory;
-    }
-
-    /**
-     * @return DataInterface
-     */
-    public function getData(
-    ): DataInterface
-    {
-        return $this->data;
     }
 
     /**
