@@ -1,0 +1,30 @@
+{
+  "name": "carlonicora/minimalism-service-data-mapper",
+  "description": "Data mapper service for minimalism",
+  "version": "1.0.0-alpha1",
+  "homepage": "https://carlonicora.com",
+  "time": "2019-05-24",
+  "license": "MIT",
+  "type": "library",
+  "minimum-stability": "alpha",
+  "authors": [
+    {
+      "name": "Carlo Nicora",
+      "email": "carlo@carlonicora.com",
+      "homepage": "http://carlonicora.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CarloNicora\\Minimalism\\Services\\DataMapper\\":"src/"
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "carlonicora/minimalism": "~13.0.1",
+    "carlonicora/minimalism-interface-cache": "~1.0",
+    "carlonicora/minimalism-interface-data": "~1.0",
+    "ext-json": "*"
+  }
+}
