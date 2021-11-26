@@ -1,6 +1,7 @@
 <?php
 namespace CarloNicora\Minimalism\Services\DataMapper\Abstracts;
 
+use CarloNicora\Minimalism\Factories\ObjectFactory;
 use CarloNicora\Minimalism\Interfaces\Cache\Interfaces\CacheBuilderFactoryInterface;
 use CarloNicora\Minimalism\Interfaces\Cache\Interfaces\CacheInterface;
 use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataInterface;
@@ -24,12 +25,13 @@ abstract class AbstractLoader implements SimpleObjectInterface
     protected ?ServiceInterface $defaultService=null;
 
     /**
-     * UsersLoader constructor.
+     * @param ObjectFactory $objectFactory
      * @param DataMapper $mapper
      * @param DataInterface $data
      * @param CacheInterface|null $cache
      */
     public function __construct(
+        protected ObjectFactory $objectFactory,
         protected DataMapper $mapper,
         protected DataInterface $data,
         protected ?CacheInterface $cache,
@@ -42,7 +44,7 @@ abstract class AbstractLoader implements SimpleObjectInterface
     }
 
     /**
-     * @param array $response
+     * @param array $recordset
      * @param string|null $recordType
      * @return array
      * @throws RecordNotFoundException
@@ -81,6 +83,7 @@ abstract class AbstractLoader implements SimpleObjectInterface
         }
 
         return new $objectType(
+            objectFactory: $this->objectFactory,
             data: array_is_list($recordset) ? $recordset[0] : $recordset,
             levelOfChildrenToLoad: $levelOfChildrenToLoad,
         );
@@ -103,12 +106,14 @@ abstract class AbstractLoader implements SimpleObjectInterface
         if (array_is_list($recordset)) {
             foreach ($recordset ?? [] as $record) {
                 $response[] = new $objectType(
+                    objectFactory: $this->objectFactory,
                     data: $record,
                     levelOfChildrenToLoad: $levelOfChildrenToLoad,
                 );
             }
         } else {
             $response[] = new $objectType(
+                objectFactory: $this->objectFactory,
                 data: $recordset,
                 levelOfChildrenToLoad: $levelOfChildrenToLoad,
             );

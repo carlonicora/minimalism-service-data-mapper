@@ -1,8 +1,6 @@
 <?php
 namespace CarloNicora\Minimalism\Services\DataMapper\Interfaces;
 
-use CarloNicora\Minimalism\Factories\MinimalismFactories;
-use CarloNicora\Minimalism\Interfaces\Cache\Interfaces\CacheInterface;
 use CarloNicora\Minimalism\Interfaces\Data\Interfaces\DataFunctionInterface;
 
 interface BuilderInterface

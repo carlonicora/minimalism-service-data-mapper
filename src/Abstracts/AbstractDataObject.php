@@ -1,6 +1,7 @@
 <?php
 namespace CarloNicora\Minimalism\Services\DataMapper\Abstracts;
 
+use CarloNicora\Minimalism\Factories\ObjectFactory;
 use CarloNicora\Minimalism\Interfaces\Data\Enums\DataType;
 use CarloNicora\Minimalism\Services\DataMapper\Interfaces\DataObjectInterface;
 use RuntimeException;
@@ -12,10 +13,12 @@ abstract class AbstractDataObject implements DataObjectInterface
 
     /**
      * Context constructor.
+     * @param ObjectFactory $objectFactory
      * @param array|null $data
      * @param int|null $levelOfChildrenToLoad
      */
     public function __construct(
+        protected ObjectFactory $objectFactory,
         ?array $data=null,
         protected ?int $levelOfChildrenToLoad=0,
     )
