@@ -48,11 +48,11 @@ abstract class AbstractLoader implements SimpleObjectInterface
      * @throws RecordNotFoundException
      */
     protected function returnSingleValue(
-        array $response,
+        array $recordset,
         ?string $recordType=null,
     ): array
     {
-        if ($response === [] || $response === [[]]){
+        if ($recordset === [] || $recordset === [[]]){
             throw new RecordNotFoundException(
                 $recordType === null
                     ? 'Record Not found'
@@ -60,7 +60,7 @@ abstract class AbstractLoader implements SimpleObjectInterface
             );
         }
 
-        return $response[0];
+        return array_is_list($recordset) ? $recordset[0] : $recordset;
     }
 
     /**
@@ -81,7 +81,7 @@ abstract class AbstractLoader implements SimpleObjectInterface
         }
 
         return new $objectType(
-            data: $recordset[0],
+            data: array_is_list($recordset) ? $recordset[0] : $recordset,
             levelOfChildrenToLoad: $levelOfChildrenToLoad,
         );
     }
@@ -100,9 +100,16 @@ abstract class AbstractLoader implements SimpleObjectInterface
     {
         $response = [];
 
-        foreach ($recordset ?? [] as $record){
+        if (array_is_list($recordset)) {
+            foreach ($recordset ?? [] as $record) {
+                $response[] = new $objectType(
+                    data: $record,
+                    levelOfChildrenToLoad: $levelOfChildrenToLoad,
+                );
+            }
+        } else {
             $response[] = new $objectType(
-                data: $record,
+                data: $recordset,
                 levelOfChildrenToLoad: $levelOfChildrenToLoad,
             );
         }
