@@ -68,14 +68,12 @@ abstract class AbstractLoader implements SimpleObjectInterface
     /**
      * @param array $recordset
      * @param string $objectType
-     * @param int|null $levelOfChildrenToLoad
      * @return DataObjectInterface
      * @throws Exception
      */
     protected function returnSingleObject(
         array $recordset,
         string $objectType,
-        ?int $levelOfChildrenToLoad=0,
     ): DataObjectInterface
     {
         if ($recordset === [] || $recordset === [[]]){
@@ -85,20 +83,17 @@ abstract class AbstractLoader implements SimpleObjectInterface
         return new $objectType(
             objectFactory: $this->objectFactory,
             data: array_is_list($recordset) ? $recordset[0] : $recordset,
-            levelOfChildrenToLoad: $levelOfChildrenToLoad,
         );
     }
 
     /**
      * @param array $recordset
      * @param string $objectType
-     * @param int|null $levelOfChildrenToLoad
      * @return DataObjectInterface[]
      */
     protected function returnObjectArray(
         array $recordset,
         string $objectType,
-        ?int $levelOfChildrenToLoad=0,
     ): array
     {
         $response = [];
@@ -108,14 +103,12 @@ abstract class AbstractLoader implements SimpleObjectInterface
                 $response[] = new $objectType(
                     objectFactory: $this->objectFactory,
                     data: $record,
-                    levelOfChildrenToLoad: $levelOfChildrenToLoad,
                 );
             }
         } else {
             $response[] = new $objectType(
                 objectFactory: $this->objectFactory,
                 data: $recordset,
-                levelOfChildrenToLoad: $levelOfChildrenToLoad,
             );
         }
 
