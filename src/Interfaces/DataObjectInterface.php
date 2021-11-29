@@ -9,12 +9,10 @@ interface DataObjectInterface
      * DataObjectInterface constructor.
      * @param ObjectFactory $objectFactory
      * @param array|null $data
-     * @param int|null $levelOfChildrenToLoad
      */
     public function __construct(
         ObjectFactory $objectFactory,
         ?array $data=null,
-        ?int $levelOfChildrenToLoad=0,
     );
 
     /**
