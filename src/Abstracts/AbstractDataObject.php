@@ -1,6 +1,7 @@
 <?php
 namespace CarloNicora\Minimalism\Services\DataMapper\Abstracts;
 
+use CarloNicora\JsonApi\Objects\ResourceObject;
 use CarloNicora\Minimalism\Factories\ObjectFactory;
 use CarloNicora\Minimalism\Interfaces\Data\Enums\DataType;
 use CarloNicora\Minimalism\Services\DataMapper\Interfaces\DataObjectInterface;
@@ -98,5 +99,14 @@ abstract class AbstractDataObject implements DataObjectInterface
         }
 
         return $value;
+    }
+
+    /**
+     * @param ResourceObject $object
+     */
+    public function ingestResource(
+        ResourceObject $object,
+    ): void
+    {
     }
 }

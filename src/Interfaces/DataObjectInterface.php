@@ -1,6 +1,7 @@
 <?php
 namespace CarloNicora\Minimalism\Services\DataMapper\Interfaces;
 
+use CarloNicora\JsonApi\Objects\ResourceObject;
 use CarloNicora\Minimalism\Factories\ObjectFactory;
 
 interface DataObjectInterface
@@ -27,4 +28,11 @@ interface DataObjectInterface
      */
     public function export(
     ): array;
+
+    /**
+     * @param ResourceObject $object
+     */
+    public function ingestResource(
+        ResourceObject $object,
+    ): void;
 }
