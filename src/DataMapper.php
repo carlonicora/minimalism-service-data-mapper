@@ -73,13 +73,4 @@ class DataMapper extends AbstractService
     {
         return $this->defaultService;
     }
-
-    /**
-     * @return void
-     */
-    public function destroy(): void
-    {
-        parent::destroy();
-        $this->builder = null;
-    }
 }
